@@ -16,7 +16,7 @@ export default function Note() {
         setNote(value)
         writeUserData()
     }
-
+    
     return (
         <div>
             <input 
