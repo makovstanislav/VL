@@ -4,11 +4,14 @@ import utilStyles from '../styles/utils.module.css';
 
 import { getSortedPostsData } from '../lib/posts';
 
-import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth"
+import { createUserWithEmailAndPassword, signOut, GoogleAuthProvider } from "firebase/auth"
 import { auth } from '../firebaseClient'
 import Note from '../components/Note'
 
 import {React, useState} from "react"
+
+import {ref, set, onValue } from "firebase/database"
+import {database} from "../firebaseClient"
 
 
 export async function getStaticProps() {
@@ -23,38 +26,63 @@ export async function getStaticProps() {
 export default function Home({allPostsData}) {
 
   const [isSigned, setSigned] = useState(false)
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "", 
+    password: "",
+    isSeller: false
+  })
 
-  // Google Auth Provider
-  const provider = new GoogleAuthProvider();
+  const [seller, switchSeller] = useState(false)
 
-  // Sign In via Google with a pop-up
-  function signIn() {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
+  function handleChange(event) {
+    setCredentials(prevCred => {
+      return {
+        ...prevCred,
+        [event.target.name]: event.target.type === "checkbox" ? !credentials.isSeller : event.target.value
+      }
+    })
+    readUserType()
+  }
+
+  function writeUserData() {
+    const {name, email, password, isSeller} = credentials
+    set(ref(database, "user"), {
+      name: name,
+      email: email,
+      password: password,
+      isSeller: isSeller
+    })
+  }
+  
+  writeUserData()
+
+  function signUp(email, password) {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
         // ...
-        console.log("cvhkjl")
-        console.log(result.user)
-        setSigned(true)
-      })
-      .then((result) => {
-        console.log(isSigned)
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      })
+        // ..
+      });
+  }
+
+  async function handleSubmit() {
+   const logUp = await signUp(credentials.email, credentials.password)
+   const addToDb = await writeUserData()
+  }
+
+  function readUserType() {
+    const isSellerRef = ref(database, 'user/isSeller')
+    onValue(isSellerRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data)
+      switchSeller(data)
+    })
   }
 
   function logOut() {
@@ -80,13 +108,39 @@ export default function Home({allPostsData}) {
         </p>
       </section>
       <section>
-        <button
-          onClick={signIn}
-          >Sign In via Google
-        </button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder='Type username'
+            onChange={handleChange}
+            name="name"
+            value={credentials.name}
+          ></input>
+          <input
+            type="email"
+            placeholder='Type email'
+            onChange={handleChange}
+            name="email"
+            value={credentials.email}
+          ></input>
+          <input
+            type="password"
+            placeholder='Type password'
+            onChange={handleChange}
+            name="password"
+            value={credentials.password}
+          ></input>
+          <input
+            type="checkbox"
+            id="isSeller"
+            name="isSeller"
+            onChange={handleChange}
+          >
+          </input>
+          <label for="isSeller">Are you a seller?</label>
+          <button>Submit</button>
+        </form>
       </section>
-      {isSigned && <Note />}
-      {isSigned && <button onClick={logOut}>Log out</button>}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
@@ -101,6 +155,7 @@ export default function Home({allPostsData}) {
           ))}
         </ul>
       </section>
+      {seller && <Note />}
     </Layout>
   );
 }
