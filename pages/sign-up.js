@@ -73,9 +73,6 @@ export default function SignUp() {
         </div>
     )
 
-        
-
-
     const signUpForm = (
         <SignUpForm
             handleChange={handleChange}

@@ -1,5 +1,3 @@
-
-
 export default function SignUpForm({handleChange, handleSubmit, credentials}) {
     return (
         <section>
