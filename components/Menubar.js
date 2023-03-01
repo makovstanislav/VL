@@ -7,7 +7,7 @@ export default function Menubar() {
             <Link href="/sign-up">Sign Up</Link>
             <Link href="/sign-in">Sign In</Link>
             <Link href="/items">Items database</Link>
-            <button>Add new item</button>
+            <button><Link href="/add-item">Add new item</Link></button>
         </div>
     )
 }
