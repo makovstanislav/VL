@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react"
 import { ref, onValue} from "firebase/database"
 import { database } from "../firebaseClient"
 import Table from "../components/table"
+import Layout from "../components/layout"
 
 
 export default function Items() {
@@ -30,12 +31,14 @@ export default function Items() {
     } 
 
     return (
-        <div>
-            <h1>hi</h1>
-            <Table 
-                items={items}
-            />
-        </div>
+        <Layout>
+            <div>
+                <h1>hi</h1>
+                <Table 
+                    items={items}
+                />
+            </div>
+        </Layout> 
     )
 }
 

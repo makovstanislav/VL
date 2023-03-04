@@ -1,9 +1,12 @@
 import { React, useState } from "react"
-import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth, database } from '../firebaseClient'
+/* import { createUserWithEmailAndPassword } from "firebase/auth"
+ */import { auth, database } from '../firebaseClient'
 import { ref, set} from "firebase/database"
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import Link from "next/link"
 import SignUpForm from "../components/forms/sign-up-form"
+import Layout from '../components/layout'
+
 
 
 
@@ -18,6 +21,13 @@ export default function SignUp() {
 
     const [isSigned, setSigned] = useState(false)
 
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
+
     //handlers
     function handleChange(event) {
         setCredentials(prevCred => {
@@ -29,9 +39,9 @@ export default function SignUp() {
     }
 
     async function handleSubmit() {
-        const logUp = await signUp(credentials.email, credentials.password)
-        const switchSigned = await setSigned(true)
-        const addToDb = await writeUserData()
+        await signUp(credentials.email, credentials.password)
+        await setSigned(true)
+        writeUserData()
     }
 
     // record credentials to db
@@ -48,7 +58,8 @@ export default function SignUp() {
     
     //signUp
     function signUp(email, password) {
-        createUserWithEmailAndPassword(auth, email, password)
+        console.log("hjkl")
+        createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 //
             })
@@ -80,17 +91,42 @@ export default function SignUp() {
             credentials={credentials}
         />
     )
+
+    {loading && <h3>Loading</h3>}
+    {error && <h3>error.message</h3>}
+    {user && <h3>user.user.email</h3>}
         
     
-
+    if (error) {
+        return(
+            <div>
+                <h1>{error.message}</h1>
+            </div>
+        )
+    } else if (loading) {
+        return(
+            <div>
+                <h1>Loading</h1>
+            </div>
+        )
+    } else if(user) {
+        return(
+            <div>
+                <h1>{user.user.email} successfully registered. Thank you! </h1>
+            </div>
+        )
+    }
 
     return(
-        <section>
+        <Layout>
             <section>
-                <Link href="/">Back home</Link>
+                <section>
+                    <Link href="/">Back home</Link>
+                </section>
+                {signUpForm}
             </section>
-            {isSigned ? success : signUpForm}
-        </section>
+        </Layout>
+        
         
     )
     

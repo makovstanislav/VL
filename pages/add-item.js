@@ -4,7 +4,7 @@ import AddItemForm from "../components/forms/add-item-form"
 import { v4 } from "uuid"
 import { database } from "../firebaseClient"
 import Link from "next/link"
-
+import Layout from "../components/layout"
 export default function AddItem() {
 
     //states
@@ -47,16 +47,19 @@ export default function AddItem() {
 
 
     return (
-        <section>
-            {!isSubmitted && <AddItemForm 
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                details={details}
-            />}
-            <div>
-                <Link href="/">Back home </Link>
-            </div>
-        </section>
+        <Layout>
+            <section>
+                {!isSubmitted && <AddItemForm 
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    details={details}
+                />}
+                <div>
+                    <Link href="/">Back home </Link>
+                </div>
+            </section>
+        </Layout>
+        
     )
 }
 

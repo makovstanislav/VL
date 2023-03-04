@@ -3,14 +3,21 @@ import SignInForm from "../components/forms/sign-in-form"
 import auth from "../firebaseClient"
 import {React, useState} from "react"
 import Link from "next/link"
+import { logOut } from "../utils"
+import Layout from '../components/layout'
+
+
 
 export default function SignIn() {
     
     //states
+    //hook1
     const [credentials, setCredentials] = useState({
         email: "", 
         password: "",
       })
+      //derived hook
+      const userEmail = credentials.email
 
     const [isSigned, setSigned] = useState(false)
 
@@ -25,30 +32,36 @@ export default function SignIn() {
     }
 
     async function handleSubmit() {
-        const logUp = await signIn(credentials.email, credentials.password)
-        const switchSigned = await setSigned(true)
+        await signIn(credentials.email, credentials.password)
+        await setSigned(true)
     }
     
     //sign-in
     function signIn(email, password) {
         signInWithEmailAndPassword(auth, email, password) 
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        })
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            })
     }
     
+    //sign out
+    async function signOut() {
+        await logOut()
+        await setSigned(false)
+    }
     
 
     //success text
     const success = (
         <div>
             <h1>You have signed in</h1>
+            <button onClick={signOut}>Log out</button>
         </div>
     )
 
@@ -62,11 +75,14 @@ export default function SignIn() {
 
 
     return (
-        <section>
-            {isSigned ? success : signInForm}
-            <div>
-                <Link href="/">Back home </Link>
-            </div>
-        </section>
+        <Layout>
+            <section>
+                {isSigned ? success : signInForm}
+                <div>
+                    <Link href="/">Back home </Link>
+                </div>
+            </section>
+        </Layout>
+        
     )
 }
