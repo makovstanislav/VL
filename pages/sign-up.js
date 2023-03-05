@@ -1,6 +1,5 @@
 import { React, useState } from "react"
-/* import { createUserWithEmailAndPassword } from "firebase/auth"
- */import { auth, database } from '../firebaseClient'
+import { auth, database } from '../firebaseClient'
 import { ref, set} from "firebase/database"
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import Link from "next/link"
