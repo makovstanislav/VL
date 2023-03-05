@@ -5,6 +5,8 @@ import {React, useState} from "react"
 import Link from "next/link"
 import { logOut } from "../utils"
 import Layout from '../components/layout'
+import Navbar from '../components/Navbar'
+
 
 
 
@@ -75,15 +77,18 @@ export default function SignIn() {
 
 
     return (
-        <Layout>
-            
-            <section>
-                {isSigned ? success : signInForm}
-                <div>
-                    <Link href="/">Back home </Link>
-                </div>
-            </section>
-        </Layout>
+        <div>
+            <Navbar />
+            <Layout>
+                <section>
+                    {isSigned ? success : signInForm}
+                    <div>
+                        <Link href="/">Back home </Link>
+                    </div>
+                </section>
+            </Layout>
+        </div>
+        
         
     )
 }

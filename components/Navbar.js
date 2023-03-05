@@ -1,19 +1,19 @@
-import Nav from 'react-bootstrap/Nav'
-
-
 export default function Navbar() {
     return (
         <div>
-            <Nav class="navbar navbar-expand-xxl bg-body-tertiary">
+            <nav class="navbar navbar-expand-sm bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="/images/virtuallab_iconLogo_v3_notext_25x25.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
                         Virtual Labs
                     </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/sign-up">Sign Up</a>
@@ -28,6 +28,6 @@ export default function Navbar() {
                         </form>
                     </div>
                 </div>
-            </Nav>
+            </nav>
         </div>
 )}

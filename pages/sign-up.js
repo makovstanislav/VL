@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import Link from "next/link"
 import SignUpForm from "../components/forms/sign-up-form"
 import Layout from '../components/layout'
+import Navbar from '../components/Navbar'
 
 
 
@@ -117,14 +118,18 @@ export default function SignUp() {
     }
 
     return(
-        <Layout>
-            <section>
+        <div>
+            <Navbar />
+            <Layout>
                 <section>
-                    <Link href="/">Back home</Link>
+                    <section>
+                        <Link href="/">Back home</Link>
+                    </section>
+                    {signUpForm}
                 </section>
-                {signUpForm}
-            </section>
-        </Layout>
+            </Layout>
+        </div>
+        
         
         
     )
