@@ -1,0 +1,33 @@
+.container-form {
+    background-color: #fff;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+    width: 424px;
+    padding: 32px;
+        padding-top: 32px;
+        padding-right: 32px;
+        padding-bottom: 32px;
+        padding-left: 32px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    flex-shrink: 0;
+    height: fit-content;
+    min-height: 579px;
+}
+
+.btn-create-account {
+    box-sizing: border-box;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Averta,sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    font-feature-settings: "tnum" on,"lnum" on;
+    background-color: #00249C;
+    min-width: 100%;
+    height: 56px;
+}

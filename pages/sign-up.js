@@ -120,14 +120,7 @@ export default function SignUp() {
     return(
         <div>
             <Navbar />
-            <Layout>
-                <section>
-                    <section>
-                        <Link href="/">Back home</Link>
-                    </section>
-                    {signUpForm}
-                </section>
-            </Layout>
+            {signUpForm}
         </div>
         
         

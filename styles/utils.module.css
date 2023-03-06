@@ -1,3 +1,9 @@
+.signUp {
+  display: flex;
+  justify-content: center;
+  padding-top: 10dvh;
+}
+
 .heading2Xl {
     font-size: 2.5rem;
     line-height: 1.2;
@@ -50,3 +56,5 @@
   .lightText {
     color: #666;
   }
+
+  
