@@ -8,7 +8,6 @@ export default function SignUpForm({handleChange, handleSubmit, credentials}) {
                 <h3>Create a Virtual Lab account</h3>
                 <p class="subtitle">It's fast, easy and free!</p>
                 <form onSubmit={handleSubmit} autoComplete="off">
-                
                     <div class="mb-3">
                         <input 
                             type="email" 

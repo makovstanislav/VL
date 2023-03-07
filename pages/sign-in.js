@@ -79,14 +79,7 @@ export default function SignIn() {
     return (
         <div>
             <Navbar />
-            <Layout>
-                <section>
-                    {isSigned ? success : signInForm}
-                    <div>
-                        <Link href="/">Back home </Link>
-                    </div>
-                </section>
-            </Layout>
+            {isSigned ? success : signInForm}
         </div>
         
         
