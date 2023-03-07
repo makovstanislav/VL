@@ -1,3 +1,16 @@
+.header {
+  height: 140px;
+}
+
+.logo {
+  background: url(/images/virtuallab_logo_v3_grey.png) no-repeat;
+  background-size: contain;
+  display: block;
+  height: 100%;
+  width: 300px;
+  margin: 30px 0 30px 200px;
+}
+
 .signUp {
   display: flex;
   justify-content: center;
@@ -56,5 +69,6 @@
   .lightText {
     color: #666;
   }
+
 
   

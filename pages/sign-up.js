@@ -6,6 +6,7 @@ import Link from "next/link"
 import SignUpForm from "../components/forms/sign-up-form"
 import Layout from '../components/layout'
 import Navbar from '../components/Navbar'
+import stylesUtils from '../styles/utils.module.css'
 
 
 
@@ -13,10 +14,9 @@ import Navbar from '../components/Navbar'
 export default function SignUp() {
     //states
     const [credentials, setCredentials] = useState({
-        name: "",
         email: "", 
         password: "",
-        isSeller: false
+        password2: ""
       })
 
     const [isSigned, setSigned] = useState(false)
@@ -33,7 +33,7 @@ export default function SignUp() {
         setCredentials(prevCred => {
             return {
             ...prevCred,
-            [event.target.name]: event.target.type === "checkbox" ? !credentials.isSeller : event.target.value
+            [event.target.name]: event.target.value
             }
         })
     }
@@ -46,12 +46,10 @@ export default function SignUp() {
 
     // record credentials to db
     function writeUserData() {
-        const {name, email, password, isSeller} = credentials
+        const {email, password, isSeller} = credentials
         set(ref(database, "user"), {
-          name: name,
           email: email,
           password: password,
-          isSeller: isSeller
         })
       }
     
@@ -119,12 +117,11 @@ export default function SignUp() {
 
     return(
         <div>
-            <Navbar />
+            <header className={stylesUtils['header']}>
+                <a href="/" className={stylesUtils['logo']}></a>
+            </header>
             {signUpForm}
         </div>
-        
-        
-        
     )
     
 
