@@ -59,6 +59,9 @@
 
 .btn-SignIn {
     min-width: 45%;
+    border: none;
+    color: #fff;
+    
 }
 
 .btn-SignIn:hover {
@@ -80,8 +83,17 @@
 
 .btnCreate:hover {
     background-color: #f6f6f6;
-    color: #2745aa;
+    color: #00249c;
 }
+
+.btnCreate:active {
+    background-color: #f6f6f6;
+    color:  #00249c;
+}
+
+
+
+
 
 
 
@@ -123,6 +135,12 @@
 }
 
 .divider {
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
+.status {
+    color: red;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}

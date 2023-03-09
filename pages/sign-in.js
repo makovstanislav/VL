@@ -1,27 +1,29 @@
-import { signInWithEmailAndPassword } from "firebase/auth"
 import SignInForm from "../components/forms/sign-in-form"
-import auth from "../firebaseClient"
-import {React, useState} from "react"
-import Link from "next/link"
+
+import { auth } from "../firebaseClient"
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import {React, useState, useEffect} from "react"
+
+import { useRouter } from 'next/router'
+
 import { logOut } from "../utils"
-import Layout from '../components/layout'
 import Navbar from '../components/Navbar'
-
-
 
 
 export default function SignIn() {
     
-    //states
-    //hook1
     const [credentials, setCredentials] = useState({
         email: "", 
         password: "",
       })
-      //derived hook
-      const userEmail = credentials.email
-
-    const [isSigned, setSigned] = useState(false)
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+    const router = useRouter()
+    
 
     //handlers
     function handleChange(event) {
@@ -33,32 +35,19 @@ export default function SignIn() {
         })
     }
 
-    async function handleSubmit() {
-        await signIn(credentials.email, credentials.password)
-        await setSigned(true)
+    function handleSubmit(event) {
+        event.preventDefault()
+        signInWithEmailAndPassword(credentials.email, credentials.password)
+        console.log("fghjkl")
+
     }
     
-    //sign-in
-    function signIn(email, password) {
-        signInWithEmailAndPassword(auth, email, password) 
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            })
-    }
     
     //sign out
     async function signOut() {
         await logOut()
-        await setSigned(false)
     }
     
-
     //success text
     const success = (
         <div>
@@ -72,14 +61,20 @@ export default function SignIn() {
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             credentials={credentials}
+            error={error}
+            loading={loading}
+            user={user}
         />
     )
 
+     if(user) {
+        router.push('/') 
+    } 
 
     return (
         <div>
             <Navbar />
-            {isSigned ? success : signInForm}
+            {signInForm}
         </div>
         
         

@@ -1,13 +1,27 @@
 import stylesUtils from '../../styles/utils.module.css'
 import styles from '../../styles/formStyles.module.css'
 
-export default function SignInForm({handleChange, handleSubmit, credentials}) {
-    
+export default function SignInForm({handleChange, handleSubmit, credentials, user, loading, error}) {
+    let status = null
+    if (error) {
+        if (error.message === 'Firebase: Error (auth/user-not-found).') {
+            status = <a>User with this email does not exists</a>
+        } else if (error.message=== 'Firebase: Error (auth/wrong-password).') {
+            status = <a>Wrong password</a>
+            console.log(error)
+        } else if (error.message==='Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).') {
+            status = <a>Too many login attempts. Try again later</a>
+        } 
+        else {
+            status = <a>{error.message}</a>
+        }
+        
+    }
     return (
-        <div className={stylesUtils['signUp']}>
+        <div className={stylesUtils['signIn']}>
             <div className={styles['container-form']}>
                 <h3>Sign in</h3>
-                <p class="subtitle">Sign in with your Virtual Lab account.</p>
+                <p className="subtitle">Sign in with your Virtual Lab account.</p>
                 <form onSubmit={handleSubmit} autoComplete="off">
                     <div class="mb-3">
                         <input
@@ -32,19 +46,20 @@ export default function SignInForm({handleChange, handleSubmit, credentials}) {
                         ></input>
                     </div>
                     <a href="#" className={styles['forgotPassword']}>Forgot password?</a>
+                    {status && <div className={styles['status']}> {status} </div>}
+                    
                     <div className={styles['buttonContainer']}>
                         <button
                             type="button" 
-                            className={`btn btn-primary btn-lg ${styles['btnCreate']}`}>
+                            className={`${styles['btnCreate']}`}>
                             Create account
                         </button>
                         <button
                             type="submit" 
-                            className={`btn btn-primary btn-lg ${styles['btn-SignIn']}`}>
+                            className={`${styles['btn-SignIn']}`}>
                             Sign in
                         </button>
                     </div>
-    
                     <hr className={styles['divider']}></hr>
                     <div className={`${styles['tos']}`}>
                         By proceeding, you accept our&nbsp;
@@ -52,6 +67,8 @@ export default function SignInForm({handleChange, handleSubmit, credentials}) {
                         &nbsp;and&nbsp;  
                         <a target="_blank" href="#">Privacy Statement</a>
                     </div>
+                    
+                    
                 </form>
             </div>
         </div>

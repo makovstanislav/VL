@@ -21,6 +21,7 @@ export default function SignUp() {
 
     const [isSigned, setSigned] = useState(false)
 
+    // hook
     const [
         createUserWithEmailAndPassword,
         user,
@@ -90,9 +91,7 @@ export default function SignUp() {
         />
     )
 
-    {loading && <h3>Loading</h3>}
-    {error && <h3>error.message</h3>}
-    {user && <h3>user.user.email</h3>}
+    
         
     
     if (error) {
@@ -107,13 +106,13 @@ export default function SignUp() {
                 <h1>Loading</h1>
             </div>
         )
-    } else if(user) {
+    }  else if(user) {
         return(
             <div>
                 <h1>{user.user.email} successfully registered. Thank you! </h1>
             </div>
         )
-    }
+    } 
 
     return(
         <div>
