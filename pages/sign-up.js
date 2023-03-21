@@ -7,6 +7,9 @@ import SignUpForm from "../components/forms/sign-up-form"
 import Layout from '../components/layout'
 import Navbar from '../components/Navbar'
 import stylesUtils from '../styles/utils.module.css'
+import { v4 } from "uuid"
+import { setCookie } from 'cookies-next';
+
 
 
 
@@ -29,6 +32,8 @@ export default function SignUp() {
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
 
+
+
     //handlers
     function handleChange(event) {
         setCredentials(prevCred => {
@@ -42,15 +47,13 @@ export default function SignUp() {
     async function handleSubmit() {
         await signUp(credentials.email, credentials.password)
         await setSigned(true)
-        writeUserData()
     }
 
     // record credentials to db
-    function writeUserData() {
-        const {email, password, isSeller} = credentials
-        set(ref(database, "user"), {
-          email: email,
-          password: password,
+    function writeUserData(uid) {
+        const {email, password} = credentials
+        set(ref(database, "/users/" + uid), {
+          email: email
         })
       }
     
@@ -107,6 +110,8 @@ export default function SignUp() {
             </div>
         )
     }  else if(user) {
+        console.log(user.user.uid)
+        writeUserData(user.user.uid)
         return(
             <div>
                 <h1>{user.user.email} successfully registered. Thank you! </h1>
@@ -123,5 +128,5 @@ export default function SignUp() {
         </div>
     )
     
-
+//user.auth.uid
 }

@@ -79,6 +79,7 @@
     color: #2745aa;
     border: none;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .btnCreate:hover {

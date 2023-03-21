@@ -27,7 +27,6 @@ export default function Items() {
             })
             console.log(items)
         })
-        
     } 
 
     return (

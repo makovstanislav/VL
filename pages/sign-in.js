@@ -3,11 +3,14 @@ import SignInForm from "../components/forms/sign-in-form"
 import { auth } from "../firebaseClient"
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import {React, useState, useEffect} from "react"
-
 import { useRouter } from 'next/router'
-
 import { logOut } from "../utils"
 import Navbar from '../components/Navbar'
+import { getCookie, setCookie } from 'cookies-next';
+
+
+
+
 
 
 export default function SignIn() {
@@ -23,7 +26,8 @@ export default function SignIn() {
         error,
       ] = useSignInWithEmailAndPassword(auth);
     const router = useRouter()
-    
+
+   const [logged, setLogged] = useState(getCookie('logged'))
 
     //handlers
     function handleChange(event) {
@@ -38,8 +42,6 @@ export default function SignIn() {
     function handleSubmit(event) {
         event.preventDefault()
         signInWithEmailAndPassword(credentials.email, credentials.password)
-        console.log("fghjkl")
-
     }
     
     
@@ -67,10 +69,21 @@ export default function SignIn() {
         />
     )
 
-     if(user) {
-        router.push('/') 
+    if (user) {
+        router.push('/dashboard') 
+        setCookie('logged', true)
+        setCookie('email', user.user.email)
+        setCookie('uid', user.user.uid)
+        console.log('sign' + user.user.uid)
     } 
 
+    useEffect(()=> {
+        if (logged) {
+            router.push('/dashboard') 
+        }
+    }, [])
+
+    
     return (
         <div>
             <Navbar />

@@ -5,9 +5,12 @@ export default function SignInForm({handleChange, handleSubmit, credentials, use
     let status = null
     if (error) {
         if (error.message === 'Firebase: Error (auth/user-not-found).') {
-            status = <a>User with this email does not exists</a>
+            status = <a>Incorrect email or password.            </a>
         } else if (error.message=== 'Firebase: Error (auth/wrong-password).') {
-            status = <a>Wrong password</a>
+            status = <a>Incorrect email or password.            </a>
+            console.log(error)
+        } else if (error.message=== 'Firebase: Error (auth/invalid-email).') {
+            status = <a>Incorrect email or password.            </a>
             console.log(error)
         } else if (error.message==='Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).') {
             status = <a>Too many login attempts. Try again later</a>
@@ -49,11 +52,9 @@ export default function SignInForm({handleChange, handleSubmit, credentials, use
                     {status && <div className={styles['status']}> {status} </div>}
                     
                     <div className={styles['buttonContainer']}>
-                        <button
-                            type="button" 
-                            className={`${styles['btnCreate']}`}>
+                        <a href="/sign-up" className={styles['btnCreate']}>
                             Create account
-                        </button>
+                        </a>
                         <button
                             type="submit" 
                             className={`${styles['btn-SignIn']}`}>

@@ -1,0 +1,33 @@
+.header {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .navList {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navItem {
+    margin: 0 10px;
+  }
+  
+  .main {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+  }
+  

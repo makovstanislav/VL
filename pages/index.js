@@ -13,6 +13,8 @@ import { auth } from "../firebaseClient"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 
+
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
