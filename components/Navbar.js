@@ -1,5 +1,7 @@
-import { getCookie } from 'cookies-next';
-import { useEffect, useState } from 'react';
+import { getCookie } from 'cookies-next'
+import { useEffect, useState } from 'react'
+
+
 
 
 export default function Navbar() {
@@ -19,6 +21,7 @@ export default function Navbar() {
     const signIn = (
         <a class="nav-link active" aria-current="page" href="/sign-in">Sign In</a>
     )
+
     return (
         <div>
             <nav class="navbar navbar-expand-sm bg-body-tertiary">

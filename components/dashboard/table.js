@@ -1,20 +1,23 @@
 export default function TableComponent({samplesData}) {
-
+    console.log('data ⬇️')
+    console.log(samplesData)
     const tableBody = samplesData.map(sample => {
+        console.log('sample ⬇️')
+        console.log(sample)
         return (
             <tr key={sample.uid}>
-                <td>{sample.uid}</td>
-                <td>{sample.title}</td>
+                <td className={'w-5'}>{sample.uid}</td>
+                <td className={'w-50'}>{sample.title}</td>
                 <td>{sample.type}</td>
                 <td>{sample.date}</td>
                 <td><button type="button" className="btn btn-outline-secondary">Edit</button></td>
-             </tr>
+            </tr>
         )
     })
 
     return (
         <>
-            <h2>Section title</h2>
+            <h2>Your specimen</h2>
             <div className="table-responsive">
                 <table className={"table table-striped table-sm"}>
                 <thead>

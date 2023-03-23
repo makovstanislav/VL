@@ -15,7 +15,6 @@ export default function Header() {
         event.preventDefault()
     }
 
-
     return (
         <header className={`navbar navbar-expand-sm bg-body-tertiary ${styles['header1']}`}>
 
@@ -52,7 +51,7 @@ export default function Header() {
                                 <title>Settings</title>
                                 <circle cx="50" cy="50" r="40" fill="blue" />
                             </svg>
-                        <UserButton />
+                        <UserButton/>
                     </div>
                 </div>
             </div>

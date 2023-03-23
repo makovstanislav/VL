@@ -74,7 +74,6 @@ export default function SignIn() {
         setCookie('logged', true)
         setCookie('email', user.user.email)
         setCookie('uid', user.user.uid)
-        console.log('sign' + user.user.uid)
     } 
 
     useEffect(()=> {

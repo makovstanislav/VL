@@ -116,3 +116,21 @@
     margin-left: 12px;
     align-self: center;
 }
+
+
+.footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    text-align: center;
+}
+
+.linkedin {
+    margin-right: 10px;
+}
+
+.tbd {
+    min-height: 100px;
+}

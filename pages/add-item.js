@@ -1,27 +1,35 @@
-import { React, useState } from "react"
-import { ref, set } from "firebase/database"
+import { React, useState, useEffect } from "react"
+import { ref, set, update } from "firebase/database"
 import AddItemForm from "../components/forms/add-item-form"
 import { v4 } from "uuid"
 import { database } from "../firebaseClient"
-import Link from "next/link"
-import Layout from "../components/layout"
+import Layout from "../components/dashboard/layout"
+import { useAuthState } from 'react-firebase-hooks/auth'
+
+import { getCookie } from "cookies-next"
+
 export default function AddItem() {
 
     //states
+    const [userUid, setUserUid] = useState(getCookie('uid'))
+
     const [details, setDetails] = useState({
-        name: "",
-        description: "", 
-        price: ""
-      })
+        title: "",
+        description: "",
+        mouse_strain: "",
+        tissue: "",
+        type: "", 
+        storage_condition: "",
+    })
 
     const [isSubmitted, setSubmitted] = useState(false)
     
-    
     //handlers
     function handleChange(event) {
-        setDetails(prevDet => {
+        console.log(event.target.name)
+        setDetails(prev => {
             return {
-            ...prevDet,
+            ...prev,
             [event.target.name]: event.target.value
             }
         })
@@ -37,14 +45,19 @@ export default function AddItem() {
     function addItem() {
         const {name, description, price} = details
         const uid = v4()
-        console.log(uid)
+        console.log(userUid)
         set(ref(database, "products/" + uid), {
-            name: details.name,
+            title: details.title,
             description: details.description,
-            price: details.price
+            mouse_strain: details.mouse_strain,
+            tissue: details.tissue,
+            type: details.type, 
+            storage_condition: details.storage_condition,
+            user_id: userUid,
+            date_created: new Date(Date.now()).toLocaleString().slice(0,10)
         })
+        set(ref(database, 'users/' + userUid + '/products/' + uid), true)
     }
-
 
     return (
         <Layout>
@@ -54,9 +67,6 @@ export default function AddItem() {
                     handleSubmit={handleSubmit}
                     details={details}
                 />}
-                <div>
-                    <Link href="/">Back home </Link>
-                </div>
             </section>
         </Layout>
         

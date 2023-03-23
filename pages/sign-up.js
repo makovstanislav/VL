@@ -2,16 +2,8 @@ import { React, useState } from "react"
 import { auth, database } from '../firebaseClient'
 import { ref, set} from "firebase/database"
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import Link from "next/link"
 import SignUpForm from "../components/forms/sign-up-form"
-import Layout from '../components/layout'
-import Navbar from '../components/Navbar'
 import stylesUtils from '../styles/utils.module.css'
-import { v4 } from "uuid"
-import { setCookie } from 'cookies-next';
-
-
-
 
 
 export default function SignUp() {
