@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react"
-import { ref, set, update } from "firebase/database"
+import { ref, set } from "firebase/database"
 import AddItemForm from "../components/forms/add-item-form"
 import { v4 } from "uuid"
 import { database } from "../firebaseClient"
@@ -61,13 +61,11 @@ export default function AddItem() {
 
     return (
         <Layout>
-            <section>
-                {!isSubmitted && <AddItemForm 
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                    details={details}
-                />}
-            </section>
+            {!isSubmitted && <AddItemForm 
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                details={details}
+            />}
         </Layout>
         
     )
