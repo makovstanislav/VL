@@ -1,9 +1,6 @@
 export default function TableComponent({samplesData}) {
-    console.log('data ⬇️')
-    console.log(samplesData)
+    
     const tableBody = samplesData.map(sample => {
-        console.log('sample ⬇️')
-        console.log(sample)
         return (
             <tr key={sample.uid}>
                 <td className={'w-5'}>{sample.uid}</td>

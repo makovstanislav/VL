@@ -8,11 +8,6 @@ import { logOut } from "../utils"
 import Navbar from '../components/Navbar'
 import { getCookie, setCookie } from 'cookies-next';
 
-
-
-
-
-
 export default function SignIn() {
     
     const [credentials, setCredentials] = useState({
@@ -27,7 +22,7 @@ export default function SignIn() {
       ] = useSignInWithEmailAndPassword(auth);
     const router = useRouter()
 
-   const [logged, setLogged] = useState(getCookie('logged'))
+    const [logged, setLogged] = useState(getCookie('logged'))
 
     //handlers
     function handleChange(event) {

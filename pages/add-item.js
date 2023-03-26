@@ -16,10 +16,13 @@ export default function AddItem() {
     const [details, setDetails] = useState({
         title: "",
         description: "",
-        mouse_strain: "",
-        tissue: "",
         type: "", 
         storage_condition: "",
+        site: "",
+        availability: "",
+        price: "",
+        strain: "",
+        source: ""
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
@@ -49,12 +52,15 @@ export default function AddItem() {
         set(ref(database, "products/" + uid), {
             title: details.title,
             description: details.description,
-            mouse_strain: details.mouse_strain,
-            tissue: details.tissue,
             type: details.type, 
             storage_condition: details.storage_condition,
             user_id: userUid,
-            date_created: new Date(Date.now()).toLocaleString().slice(0,10)
+            date_created: new Date(Date.now()).toLocaleString().slice(0,10),
+            site: details.site,
+            availability: details.availability,
+            price: details.price,
+            strain: details.strain,
+            source: details.source
         })
         set(ref(database, 'users/' + userUid + '/products/' + uid), true)
     }

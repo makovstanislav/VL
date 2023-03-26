@@ -33,36 +33,19 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                 </div>
                 <div className={styles['selections']}>
                     <div>
-                        <label for='description' class="form-label">Mouse strain</label> 
+                        <label for='strain' class="form-label">Strain</label> 
                         <select 
                             class="form-select" 
-                            name="mouse_strain"
+                            name="strain"
                             aria-label="Default select example" 
                             placeholder="Choose a strain" 
                             value={details.mouse_strain}
                             onChange={handleChange}
                         >  
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-
-                    <div> 
-                        <label for='description' class="form-label">Tissue</label>
-                        <select 
-                            class="form-select" 
-                            name="tissue"
-                            aria-label="Default select example" 
-                            placeholder="Choose a strain" 
-                            value={details.tissue}
-                            onChange={handleChange}
-                        >  
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="1">C57BL/6J</option>
+                            <option value="2">DBA2J</option>
+                            <option value="3">CD1</option>
+                            <option value="3">PWK</option>
                         </select>
                     </div>
 
@@ -72,14 +55,18 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             class="form-select" 
                             name="type"
                             aria-label="Default select example" 
-                            placeholder="Choose a strain" 
                             value={details.type}
                             onChange={handleChange}
                         >  
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="Blood">Blood</option>
+                            <option value="Urine">Urine</option>
+                            <option value="Stool">Stool</option>
+                            <option value="Tissue">Tissue</option>
+                            <option value="Cells">Cells</option>
+                            <option value="Saliva">Saliva</option>
+                            <option value="Swabs">Swabs</option>
+                            <option value="DNA">DNA</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 
@@ -93,12 +80,62 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             value={details.storage_condition}
                             onChange={handleChange}
                         >
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="Good">Good</option>
+                            <option value="Bad">Bad</option>
+                            <option value="Excellent">Excellent</option>
                         </select>
                     </div>
+
+                    <div> 
+                        <label for='availability' class="form-label">Availability</label>
+                        <select 
+                            class="form-select" 
+                            name="availability"
+                            aria-label="Default select example" 
+                            value={details.tissue}
+                            onChange={handleChange}
+                        >  
+                            <option value="1">In stock</option>
+                            <option value="2">On demand</option>
+                        </select>
+                    </div>
+
+                    <div className={`mb-3 ${styles['description']}`}>
+                        <label for='source' class="form-label">Source organism</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder=''
+                            onChange={handleChange}
+                            name="source"
+                            value={details.source}
+                        ></input>
+                    </div>
+
+                    <div className={`mb-3 ${styles['description']}`}>
+                        <label for='site' class="form-label">Site</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder=''
+                            onChange={handleChange}
+                            name="site"
+                            value={details.site}
+                        ></input>
+                    </div>
+
+                    <div className={`mb-3 ${styles['description']}`}>
+                        <label for='price' class="form-label">Price</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder=''
+                            onChange={handleChange}
+                            name="price"
+                            value={details.price}
+                        ></input>
+                    </div>
+                    
                 </div>
                 <button class="btn btn-primary" type="submit">Publish</button>
             </form>
