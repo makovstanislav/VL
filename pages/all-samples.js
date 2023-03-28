@@ -14,7 +14,10 @@ export default function AllSamples() {
     const [selectedStrains, setSelectedStrains] = useState([])
     const [selectedAvailability, setSelectedAvailability] = useState([])
     const [selectedPrice, setSelectedPrice] = useState({min: 0, max: 1000000})
-    const [sorted, setSorted] = useState(false)
+    const [sorted, setSorted] = useState({
+        on: false,
+        asc: false
+    })
 
 
     useEffect(() => {
@@ -80,6 +83,26 @@ export default function AllSamples() {
             })
     }
 
+    function sortByPrice() {
+        if (sorted.on === false) {
+            setSorted(prev => {
+                return {
+                    ...prev,
+                    on: !prev.on
+                }
+            })
+        } else {
+            setSorted(prev => {
+                return {
+                    ...prev,
+                    asc: !prev.asc
+                }
+            })
+        }
+        
+    }
+
+
     // filter samples based on search term
     const filteredSamplesData = samplesData.filter((sample) =>
         (sample.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,8 +112,13 @@ export default function AllSamples() {
         (sample.price >= selectedPrice.min &&  sample.price <= selectedPrice.max)
     )
     
-    if (sorted) {
-        filteredSamplesData.sort((a, b) => a.price - b.price)
+    if (sorted.on) {
+        if (sorted.asc) {
+            filteredSamplesData.sort((a, b) => a.price - b.price)
+        } else {
+            filteredSamplesData.sort((a, b) => b.price - a.price)
+        }
+        
     }
     
 
@@ -164,7 +192,7 @@ export default function AllSamples() {
                         value={selectedPrice.max}
                     ></input>
                 </div>
-                <button onClick={() => setSorted(prev => !prev)}>Sort by price</button>
+                <button onClick={sortByPrice}>Sort by price</button>
             </div>
             <AllSamplesTable samplesData={filteredSamplesData} />
         </Layout>
