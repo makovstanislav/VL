@@ -38,19 +38,18 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             class="form-select" 
                             name="strain"
                             aria-label="Default select example" 
-                            placeholder="Choose a strain" 
-                            value={details.mouse_strain}
+                            value={details.strain}
                             onChange={handleChange}
                         >  
-                            <option value="1">C57BL/6J</option>
-                            <option value="2">DBA2J</option>
-                            <option value="3">CD1</option>
-                            <option value="3">PWK</option>
+                            <option value="C57BL/6J" selected>C57BL/6J</option>
+                            <option value="DBA2J">DBA2J</option>
+                            <option value="CD1">CD1</option>
+                            <option value="PWK">PWK</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for='description' class="form-label">Sample type</label> 
+                        <label for='type' class="form-label">Sample type</label> 
                         <select 
                             class="form-select" 
                             name="type"
@@ -58,7 +57,7 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             value={details.type}
                             onChange={handleChange}
                         >  
-                            <option value="Blood">Blood</option>
+                            <option value="Blood" selected>Blood</option>
                             <option value="Urine">Urine</option>
                             <option value="Stool">Stool</option>
                             <option value="Tissue">Tissue</option>
@@ -76,11 +75,10 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             class="form-select" 
                             name="storage_condition"
                             aria-label="Storage condition" 
-                            placeholder="Choose a strain" 
                             value={details.storage_condition}
                             onChange={handleChange}
                         >
-                            <option value="Good">Good</option>
+                            <option value="Good" selected>Good</option>
                             <option value="Bad">Bad</option>
                             <option value="Excellent">Excellent</option>
                         </select>
@@ -92,11 +90,12 @@ export default function AddItemForm({handleChange, handleSubmit, details}) {
                             class="form-select" 
                             name="availability"
                             aria-label="Default select example" 
-                            value={details.tissue}
+                            value={details.availability}
                             onChange={handleChange}
                         >  
-                            <option value="1">In stock</option>
-                            <option value="2">On demand</option>
+                            <option value="In stock" selected>In stock</option>
+                            <option value="On demand">On demand</option>
+                            <option value="Both">Both</option>
                         </select>
                     </div>
 

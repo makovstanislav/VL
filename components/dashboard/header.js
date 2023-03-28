@@ -28,19 +28,6 @@ export default function Header() {
                 />
             </a>
 
-            <form 
-                className={`d-flex ${styles['search']} `}
-                role="search" 
-                onSubmit={handleSubmit}>
-                <input 
-                    class="form-control me-2" 
-                    type="search" 
-                    placeholder="Search catalog..." 
-                    aria-label="Search"
-                    onChange={handleChange} 
-                />   
-            </form>
-
             <div className={styles['box-right']}>
                 <div className={styles['create-button-container']}>
                     <CreateButton />
