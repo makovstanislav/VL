@@ -1,0 +1,62 @@
+.overall {
+    margin-top: 30px;
+    margin-left: 14px;
+    margin-bottom: 30px;
+}
+
+.all-samples {
+    display: flex;
+    text-align: center;
+}
+
+.search {
+    width: 670px;
+    align-self: center;
+    height: 35px;
+    margin-left: 60px;
+}
+
+.filters {
+    display: flex;
+    margin-left: auto;
+    margin-right: 40px;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown-menu-container, .price{
+    margin-left: 5px;
+}
+
+.price {
+    width: 250px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.priceRange {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.results-found {
+    margin-left: 14px;
+    margin-bottom: 10px;
+    color: #adb5bd;
+}
+
+
+.col-1 {
+    text-indent: 14px;
+}
+
+.col-price {
+    /* vertically align items to the top */
+    display: flex;
+    align-items: top;
+}
+
+
+
+

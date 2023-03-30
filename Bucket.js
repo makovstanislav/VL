@@ -50,3 +50,22 @@ function getSamplesDetails() {
     })
     setSamplesDetails(productsArr)
 }
+
+
+  {/* <input
+                        type="text"
+                        class="form-control"
+                        placeholder=''
+                        onChange={handlePriceChange}
+                        name="max"
+                        value={selectedPrice.max}
+                    ></input>
+                    <input 
+                        type="range" 
+                        className="form-range"
+                        min="0"
+                        max="10000" 
+                        onChange={handlePriceChange}
+                        name="max"
+                        value={selectedPrice.max}
+                        > */}

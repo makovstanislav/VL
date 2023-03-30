@@ -30,11 +30,6 @@
     position: relative;
 }
 
-.search {
-    width: 670px;
-    align-self: center;
-    height: 35px;
-}
 
 .box-root {
     display: flex;

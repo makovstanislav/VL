@@ -14,7 +14,9 @@ export default function Dashboard() {
     
     useEffect(() => {
         if (user) {
+            console.log("before access")
             getSamplesData(user.uid)
+            console.log("after access")
         }
     }, [user]);
     

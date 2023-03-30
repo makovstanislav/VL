@@ -5,12 +5,6 @@ import UserButton from './user-button'
 
 export default function Header() {
 
-    const [search, setSearch] = useState('')
-
-    function handleChange(event) {
-        setSearch(prev => event.target.value)
-    }
-
     function handleSubmit(event) {
         event.preventDefault()
     }
@@ -29,9 +23,6 @@ export default function Header() {
             </a>
 
             <div className={styles['box-right']}>
-                <div className={styles['create-button-container']}>
-                    <CreateButton />
-                </div>
                 <div className={styles['box-root']}>
                     <div className={styles['profile-tools']}>
                             <svg className={styles['settings-icon']} title="Settings">
