@@ -10,3 +10,6 @@ SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
 2023.03.29 10:03:09 WARN  no build tool detected in workspace '/Users/Stan/Desktop/dev/Next-Notes/notes-mw5n'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 mars 29, 2023 10:06:29 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFOS: Unsupported notification method: $/setTrace
+2023.03.31 09:42:43 INFO  Shutting down server
+2023.03.31 09:42:43 INFO  shutting down Metals
+2023.03.31 09:42:43 INFO  Exiting server
