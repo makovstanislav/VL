@@ -1,11 +1,30 @@
 import styles from "../../styles/add-item.module.css"
+import formData from "../../etc/item_metadata.json"
 
 export default function AddItemForm({handleChange, handleSubmit, details}) {
-
+    
     return (
-
         <div className={styles['container']}>
             <h3>Create new specimens</h3>
+            {Object.keys(formData.item.details).forEach(key => {
+                    if (formData.item.details[key].type === "text") {
+                        console.log(formData.item.details[key].name)
+                        return (
+                            <div className={`mb-3 ${styles['description']}`}>
+                                <label for={formData.item.details[key].name} class="form-label">{formData.item.details[key].name}</label>
+                                <p>{formData.item.details[key].description}</p>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder=''
+                                    onChange={handleChange}
+                                    name={formData.item.details[key].name}
+                                    value={details.name}
+                                ></input>
+                            </div>
+                        )
+                    }
+                })}
             <form className={styles['form']} onSubmit={handleSubmit}>
                 <div className={styles['basic-inputs']}>
                     <div class="mb-3">
