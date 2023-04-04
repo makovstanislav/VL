@@ -4,8 +4,6 @@ import AddItemForm from "../components/forms/add-item-form"
 import { v4 } from "uuid"
 import { database } from "../firebaseClient"
 import Layout from "../components/dashboard/layout"
-import { useAuthState } from 'react-firebase-hooks/auth'
-
 import { getCookie } from "cookies-next"
 
 export default function AddItem() {
@@ -40,12 +38,12 @@ export default function AddItem() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        const addToBd = await addItem()
+        const addToBd = await submitItem()
         const switchSubmitted = await setSubmitted(true)
     }
 
     // adding to db
-    function addItem() {
+    function submitItem() {
         const {name, description, price} = details
         const uid = v4()
         console.log(userUid)
