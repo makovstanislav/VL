@@ -1,0 +1,62 @@
+.Hero {
+    background-image: url('../../src/assets/images/background_theme.jpg');
+    min-height:100vh;
+    height:auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.HeroTextContainer{
+    margin-block-start: 5%;
+    color:#fff;
+    text-shadow: 3px 3px 3px #333;
+    text-align: center;
+}
+
+.HeroTextContainer h1 {
+    font-size: 300%;
+    font-weight: bold;
+}
+
+.HeroTextContainer h2 {
+    font-size: 180%;
+}
+
+.HeroBtnContainer {
+    margin-block-start: 5%;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.HeroBtn {
+    font-size: 120%;
+    font-weight: bold;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.HeroCard {
+    margin-block-start: 10%;
+    background-color: rgba(0, 0, 0, 0);
+    color:#fff;
+    text-shadow: 3px 3px 3px #333;
+    font-size: 120%;
+    height: 100%;
+}
+
+.HeroCard img {
+    max-height:10vh;
+    height:auto;
+    object-fit: cover;
+}
+
+.SectionContainer {
+    margin-block: 5%;
+    text-align: center;
+}
+
+.SectionContainer h1 {
+    font-weight: bold;
+}

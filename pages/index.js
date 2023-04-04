@@ -1,3 +1,4 @@
+// This is the main entrypoint file for the application.
 import {React, useState} from "react"
 
 import Head from 'next/head';
@@ -8,11 +9,11 @@ import { getSortedPostsData } from '../lib/posts';
 import Note from '../components/Note'
 import Menubar from '../components/Menubar'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import LandingPage from './LandingPage/LandingPage'
 
 import { auth } from "../firebaseClient"
 import { useAuthState } from "react-firebase-hooks/auth"
-
-
 
 
 export async function getStaticProps() {
@@ -41,6 +42,8 @@ export default function Home({allPostsData}) {
   return (
     <>
       <Navbar />
+      <LandingPage />
+      <Footer />
     </>
   )
 }
