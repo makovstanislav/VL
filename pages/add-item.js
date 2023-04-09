@@ -14,64 +14,133 @@ export default function AddItem() {
     const [details, setDetails] = useState({
         title: "",
         description: "",
-        type: "", 
-        storage_condition: "",
-        site: "",
+        specimenType: "", 
+        sourceOrganism: "",
+        sourceStrain: "",
+        sourceSamplingSite: "",
+        samplingDate: "",
+        samplingTime: "",
+        storageCondition: "",
+        experimentalConditions: "",
+        treatment: "",
+        availableData: "",
+        number: "",
+        volume: "",
+        volumeUnit: "",
+        concentration: "",
+        concentrationUnit: "",
         availability: "",
         price: "",
-        strain: "",
-        source: ""
+        priceCurrency: "",
+        countryOfOrigin: "",
+        shippingOption: ""
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
     
-    //handlers
-    function handleChange(event) {
-        console.log(event.target.name)
+    //change handler
+    function handleChange(e) {
         setDetails(prev => {
             return {
-            ...prev,
-            [event.target.name]: event.target.value
+                ...prev,
+                [e.target.name]: e.target.value
             }
         })
     }
 
+    // hardcoded date, time and checkbox change handlers
+    const handleDateChange = (e) => {
+        
+
+        setDetails(prev => {
+            return {
+                ...prev,
+                [e.target.name]: new Date(e.target.value)
+            }
+        })
+    }
+    
+    const handleTimeChange = (e) => {
+        console.log(details)
+
+
+        setDetails(prev => {
+            return {
+                ...prev,
+                [e.target.name]: new Date(`1970-01-01T${e.target.value}:00`)
+            }
+        })
+    }
+
+    const handleCheckBoxChange = (e) => {
+        console.log(details)
+
+        setDetails(prev => {
+            const field = e.target.name
+            const option = e.target.value
+            const value = e.target.checked
+
+            return {
+                ...prev,
+                [field]: {
+                    ...prev[field],
+                    [option]: value
+                }
+            }
+        })
+    }
+
+    // submit handler
     async function handleSubmit(event) {
         event.preventDefault()
         const addToBd = await submitItem()
         const switchSubmitted = await setSubmitted(true)
     }
 
-    // adding to db
+    // submit a sample to db
     function submitItem() {
         const {name, description, price} = details
         const uid = v4()
-        console.log(userUid)
         set(ref(database, "products/" + uid), {
-            title: details.title,
-            description: details.description,
-            type: details.type, 
-            storage_condition: details.storage_condition,
             user_id: userUid,
             date_created: new Date(Date.now()).toLocaleString().slice(0,10),
-            site: details.site,
+            title: details.title,
+            description: details.description,
+            specimenType: details.specimenType,
+            sourceOrganism: details.sourceOrganism,
+            sourceStrain: details.sourceStrain,
+            sourceSamplingSite: details.sourceSamplingSite,
+            samplingDate: details.samplingDate,
+            samplingTime: details.samplingTime,
+            storageCondition: details.storageCondition,
+            experimentalConditions: details.experimentalConditions,
+            treatment: details.treatment,
+            availableData: details.availableData,
+            number: details.number,
+            volume: details.volume,
+            volumeUnit: details.volumeUnit,
+            concentration: details.concentration,
+            concentrationUnit: details.concentrationUnit,
             availability: details.availability,
             price: details.price,
-            strain: details.strain,
-            source: details.source
+            priceCurrency: details.priceCurrency,
+            countryOfOrigin: details.countryOfOrigin,
+            shippingOption: details.shippingOption
         })
         set(ref(database, 'users/' + userUid + '/products/' + uid), true)
     }
-
+    
     return (
         <Layout>
-            {!isSubmitted && <AddItemForm 
+            {!isSubmitted && <AddItemForm
+                details={details} 
                 handleChange={handleChange}
+                handleCheckBoxChange={handleCheckBoxChange}
+                handleDateChange={handleDateChange}
+                handleTimeChange={handleTimeChange}
                 handleSubmit={handleSubmit}
-                details={details}
             />}
         </Layout>
-        
     )
 }
 
