@@ -173,13 +173,16 @@ export default function AddItemForm({handleChange, handleDateChange, handleTimeC
 
     return (
         <div className={styles['container']}>
-            <h1 className="h1">Create new specimens</h1>
+            <div className={styles['header']}>
+                <h1 className={styles['h1']}>Create&nbsp;</h1> 
+                <h1 className={styles['new-specimen']}>new specimens</h1>
+            </div>
             <form className={styles['form']} onSubmit={handleSubmit}>
                 {forms}
             </form>
             <div className={styles['buttons']}>
-                <button className={`btn btn-secondary btn-lg ${styles['submitBtn']}`} type="button">Save draft </button>
-                <button className={`btn btn-warning btn-lg ${styles['submitBtn']}`} type="submit">Publish </button>
+                <button className={`btn btn-secondary btn-lg ${styles['saveBtn']}`} type="button">Save draft </button>
+                <button className={`btn btn-primary btn-lg ${styles['submitBtn']}`} type="submit">Publish </button>
             </div>
         </div>
     )
