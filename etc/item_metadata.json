@@ -2,7 +2,7 @@
     "details":{
         "title":{
             "name":"Title",
-            "description":"Specimen title.",
+            "description":"Specimen title",
             "required":"TRUE",
             "type":"text",
             "lengthMax":60,
@@ -10,7 +10,7 @@
         },
         "description":{
             "name":"Description",
-            "description":"Specimen short description.",
+            "description":"Specimen short description",
             "required":"TRUE",
             "type":"text",
             "lengthMax":1000,
@@ -18,7 +18,7 @@
         },
         "specimenType":{
             "name":"Type",
-            "description":"Specimen type.",
+            "description":"Specimen type",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{"tissue":"Tissue", "cells":"Cell line", "microbiome":"Microbiome"},
@@ -27,7 +27,7 @@
         },
         "sourceOrganism":{
             "name":"Organism",
-            "description":"Specimen source organism (NCBI taxon ID).",
+            "description":"Specimen source organism (NCBI taxon ID)",
             "required":"TRUE",
             "type":"keyValuePair",
             "default":"10090",
@@ -43,7 +43,7 @@
         },
         "sourceSamplingSite":{
             "name":"Sampling site",
-            "description":"Sampling site (e.g. Liver).",
+            "description":"Sampling site (e.g. Liver)",
             "useIf":"source %in% ['tissue', 'microbiome']",
             "required":"TRUE",
             "type":"text",
@@ -52,20 +52,20 @@
         },
         "samplingDate":{
             "name":"Sampling date",
-            "description":"Sampling date.",
+            "description":"Sampling date",
             "required":"TRUE",
             "type":"date",
             "inputFormType":"date"
         },
         "samplingTime":{
             "name":"Sampling time",
-            "description":"Sampling time.",
+            "description":"Sampling time",
             "type":"time",
             "inputFormType":"time"
         },
         "storageCondition":{
             "name":"Storage condition",
-            "description":"Storage condition.",
+            "description":"Storage condition",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{"-20":"-20°C", "-80":"-80°C", "4":"4°C", "cryogeny":"Cryogeny", "rt":"Room temperature"},
@@ -73,21 +73,21 @@
         },
         "experimentalConditions":{
             "name":"Experimental conditions",
-            "description":"A description of experimental conditions.",
+            "description":"A description of experimental conditions",
             "type":"text",
             "lengthMax":"2000",
             "inputFormType":"text"
         },
         "treatment":{
-            "name":"treatment",
-            "description":"A description of treatment, if applicable.",
+            "name":"Treatment",
+            "description":"A description of treatment, if applicable",
             "type":"text",
             "lengthMax":"2000",
             "inputFormType":"text"
         },
         "availableData":{
             "name":"Available data",
-            "description":"A description of associated data, if applicable.",
+            "description":"A description of associated data, if applicable",
             "type":"text",
             "lengthMax":"1000",
             "inputFormType":"text"
@@ -96,7 +96,7 @@
     "pricingAndAvailability": {
         "number":{
             "name":"Specimen number",
-            "description":"Number of specimen.",
+            "description":"Number of specimen",
             "required":"TRUE",
             "type":"positiveInteger",
             "default":"1",
@@ -104,33 +104,33 @@
         },
         "volume":{
             "name":"Volume",
-            "description":"Volume, if applicable.",
+            "description":"Volume, if applicable",
             "type":"positiveNumber1Digit",
             "inputFormType":"number"
         },
         "volumeUnit":{
             "name":"Volume unit",
-            "description":"Volume unit, if applicable.",
+            "description":"Volume unit, if applicable",
             "type":"keyValuePair",
             "option":{"ul":"ul", "ml":"ml", "l":"l"},
             "inputFormType":"radio"
         },
         "concentration":{
             "name":"Concentration",
-            "description":"Concentration, if applicable.",
+            "description":"Concentration, if applicable",
             "type":"positiveNumber1Digit",
             "inputFormType":"number"
         },
         "concentrationUnit":{
             "name":"Concentration unit",
-            "description":"Concentration unit, if applicable.",
+            "description":"Concentration unit, if applicable",
             "type":"keyValuePair",
             "option":{"":"u/ul", "ml":"u/ml", "mm/l":"mm/ml"},
             "inputFormType":"radio"
         },
         "availability":{
             "name":"Availability",
-            "description":"Availability.",
+            "description":"Availability",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{"inStock":"In stock", "onDemand":"On demand"},
@@ -138,14 +138,14 @@
         },
         "price":{
             "name":"Price",
-            "description":"Price per item.",
+            "description":"Price per item",
             "required":"TRUE",
             "type":"positiveNumber2Digits",
             "inputFormType":"number"
         },
         "priceCurrency":{
             "name":"Currency",
-            "description":"Currency.",
+            "description":"Currency",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{"CHF":"CHF", "USD":"USD", "EUR":"EUR"},
@@ -155,7 +155,7 @@
     "shipping":{
         "countryOfOrigin":{
             "name":"Country",
-            "description":"Country of origin.",
+            "description":"Country of origin",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{
@@ -416,7 +416,7 @@
         },
         "shippingOption":{
             "name":"Shipping",
-            "description":"Shipping option.",
+            "description":"Shipping option",
             "required":"TRUE",
             "type":"keyValuePair",
             "option":{"inStock":"Standard mail", "onDemand":"Special delivery"},

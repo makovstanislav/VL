@@ -37,6 +37,7 @@ export default function AddItem() {
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
+    const [validated, setValidated] = useState(null)
     
     //change handler
     function handleChange(e) {
@@ -93,8 +94,19 @@ export default function AddItem() {
     // submit handler
     async function handleSubmit(event) {
         event.preventDefault()
-        const addToBd = await submitItem()
-        const switchSubmitted = await setSubmitted(true)
+        // check if all required fields are filled
+        const form = event.currentTarget
+        if (form.checkValidity() === false) {
+            event.stopPropagation()
+            setValidated(false)
+            console.log("validation failed")
+        } else {
+            setValidated(true)
+            // submit to db
+            const addToBd = await submitItem()
+            const switchSubmitted = await setSubmitted(true)
+        }
+        console.log("validated" + validated)
     }
 
     // submit a sample to db
@@ -139,6 +151,7 @@ export default function AddItem() {
                 handleDateChange={handleDateChange}
                 handleTimeChange={handleTimeChange}
                 handleSubmit={handleSubmit}
+                validated={validated}
             />}
         </Layout>
     )
