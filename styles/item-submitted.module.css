@@ -1,0 +1,50 @@
+.submitted {
+    font-size: 0.8em;
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+.overall {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    width: fit-content;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.text {
+    margin-top: 0.91em;
+    margin-bottom: 0.91em;
+}
+
+.backBtn {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-right: 2em;
+}
+
+.viewBtn {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-right: 2em;
+
+}
+
+.createBtn {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}

@@ -22,26 +22,34 @@ export default function AddItemForm({handleChange, handleDateChange, handleTimeC
         Object.keys(obj).forEach(key => {
             let field = (<></>)
 
-            // text field
+            // text field OR textarea based on the length of the text
             if (obj[key].inputFormType === "text") {
+                const InputComponent = obj[key].lengthMax > 60 ? 'textarea' : 'input';
+                const inputProps = {
+                    id: "validationCustom01",
+                    type: InputComponent === 'textarea' ? 'textarea' : 'text',
+                    className: `form-control ${InputComponent === 'textarea' ? styles['inputTextBig'] : styles['inputTextNormal']}`,
+                    onChange: handleChange,
+                    name: key,
+                    value: details[key],
+                    maxlength: obj[key].lengthMax,
+                    ...obj[key].required ? {required: true} : {required: false},
+                };
                 field = (
                     <div className={`mb-3 ${obj[key].lengthMax > 60 ? styles['field-normal'] : styles['field-box']}`}>
                         <div>
                             <label for="validationCustom01" class="form-label fw-semibold">{obj[key].name}&nbsp;&nbsp;</label>
                             {!obj[key].required && <div className="badge bg-secondary text-wrap fw-semibold" >Optional</div>}
                         </div>
-                        <input
-                            id="validationCustom01"
-                            type="text"
-                            className={`form-control ${obj[key].lengthMax > 60 && styles['inputTextBig']}`}
-                            onChange={handleChange}
-                            name={key}
-                            value={details[key]}
-                            {...obj[key].required ? {required: true} : {required: false}}
-                        ></input>
+                        {InputComponent === 'textarea' ? (
+                            <textarea {...inputProps}></textarea>
+                        ) : (
+                            <input {...inputProps} />
+                        )}
                     </div>
-                )
+                );
             }
+            
 
             // number 
             else if (obj[key].inputFormType === "number") {
@@ -179,11 +187,13 @@ export default function AddItemForm({handleChange, handleDateChange, handleTimeC
             </div>
             <form className={styles['form']} onSubmit={handleSubmit}>
                 {forms}
+            
+                <div className={styles['buttons']}>
+                    <button className={`btn btn-outline-secondary btn-lg ${styles['saveBtn']}`} type="button">Save draft </button>
+                    <button className={`btn btn-dark btn-lg ${styles['submitBtn']}`} type="submit">Publish </button>
+
+                </div>
             </form>
-            <div className={styles['buttons']}>
-                <button className={`btn btn-secondary btn-lg ${styles['saveBtn']}`} type="button">Save draft </button>
-                <button className={`btn btn-primary btn-lg ${styles['submitBtn']}`} type="submit">Publish </button>
-            </div>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import { v4 } from "uuid"
 import { database } from "../firebaseClient"
 import Layout from "../components/dashboard/layout"
 import { getCookie } from "cookies-next"
+import ItemSubmitted from "../components/dashboard/item-submitted"
 
 export default function AddItem() {
 
@@ -144,7 +145,7 @@ export default function AddItem() {
     
     return (
         <Layout>
-            {!isSubmitted && <AddItemForm
+            {!isSubmitted ? <AddItemForm
                 details={details} 
                 handleChange={handleChange}
                 handleCheckBoxChange={handleCheckBoxChange}
@@ -152,6 +153,8 @@ export default function AddItem() {
                 handleTimeChange={handleTimeChange}
                 handleSubmit={handleSubmit}
                 validated={validated}
+            /> : <ItemSubmitted 
+                title={details.title}
             />}
         </Layout>
     )
