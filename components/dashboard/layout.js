@@ -11,9 +11,14 @@ export default function Layout({children}) {
                 <Header />
             </div>
             <main>
-                {children}
+                <div className={styles['page-container']}>
+                    <div className={styles['content-wrap']}>
+                        {children}
+                    </div>
+                    <Footer/>
+                </div>
             </main>
-            <Footer />
+            
         </>
     )
 }

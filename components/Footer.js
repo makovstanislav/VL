@@ -4,7 +4,7 @@ import styles from '../styles/ds-layout.module.css'
 
 export default function Footer() {
     return (
-        <footer className={`footer mt-auto py-3 bg-light ${styles['footer']}`}>
+        <footer id='footer' className={`footer mt-auto py-3 bg-light ${styles['footer']}`}>
             <div class="container">
                 {/*
                 <a href="https://virtual-lab.bio" alt="https://virtual-lab.bio">Virtual Lab</a>
