@@ -2,19 +2,20 @@
     font-size: 0.8em;
     margin-top: 10em;
     margin-bottom: 10em;
-    border: 1px solid red;
 }
 
 .overall {
     display: flex;
     flex-direction: column;
+    width: -moz-fit-content;
     width: fit-content;
     margin: 0 auto;
 }
 
 .content {
     display: flex;
-    width: fit-content;
+    width: -moz-fit-content;
+    width: fit-content
 }
 
 .buttons {
